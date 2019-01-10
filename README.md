@@ -16,7 +16,9 @@ wget https://www.inet.no/dante/files/dante-1.4.2.tar.gz
 2. Install dependence package
 
 yum install -y autoconf automake binutils gcc make rpm-build rpmdevtools
+
 yum install -y bison flex glibc-devel libtool pam-devel
+
 yum install -y gcc make rpm-build bison flex pam-devel
 
 3. Build package
@@ -26,6 +28,7 @@ rpmbuild -ta dante-1.4.2.tar.gz
 4. Install the RPM
 
 rpm -ivh rpmbuild/RPMS/x86_64/dante-1.4.2-1.el7.centos.x86_64.rpm
+
 rpm -ivh rpmbuild/RPMS/x86_64/dante-server-1.4.2-1.el7.centos.x86_64.rpm
 
 5. Setup configure
@@ -53,5 +56,7 @@ systemctl restart sockd
 
 Special thanks for the reference:
 https://kagasu.hatenablog.com/entry/2017/08/26/173052     (thumb)
+
 http://lixingcong.github.io/2018/05/25/dante-socks5/
+
 https://lvii.gitbooks.io/outman/content/dante.html
