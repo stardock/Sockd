@@ -33,15 +33,41 @@ rpm -ivh rpmbuild/RPMS/x86_64/dante-server-1.4.2-1.el7.centos.x86_64.rpm
 ##  Setup configure  
 ```  
 vim /etc/sockd.conf  
-vim /etc/socks.conf  
 ```  
 
 Configure for reference  
 
-    sockd.conf  
-    https://gist.github.com/kagasu/6be00c08f8eb8cbec56fe1b32ac82034/revisions  
-    socks.conf  
-    https://gist.github.com/kagasu/279edf63e8e1b64f432ceb27e2a79bf5/revisions  
+```
+# /etc/sockd.conf
+
+logoutput: syslog
+user.privileged: root
+user.unprivileged: nobody
+
+# The listening network interface or address.
+internal: 0.0.0.0 port=1080
+
+# The proxying network interface or address.
+external: eth0
+
+# socks-rules determine what is proxied through the external interface.
+# The default of "none" permits anonymous access.
+socksmethod: username
+
+# client-rules determine who can connect to the internal interface.
+# The default of "none" permits anonymous access.
+clientmethod: none
+
+client pass {
+    from: 0.0.0.0/0 to: 0.0.0.0/0
+    #log: connect disconnect error
+}
+
+socks pass {
+    from: 0.0.0.0/0 to: 0.0.0.0/0
+    #log: connect disconnect error
+}
+```
 
 ## Setup firewall to allowed  
 
