@@ -69,6 +69,12 @@ socks pass {
 }
 ```
 
+将上述配置文件中的external修改为VPS实际的流量出口interface，比如我的openVZ机子是venet0:0  
+创建一个用户并修改密码，用于，赋予最低的权限。  
+```
+useradd -r -s /bin/false USERNAME
+passwd USERNAME
+```
 ## Setup firewall to allowed  
 
 firewall-cmd --zone=public --add-port=1080/tcp --permanent  
