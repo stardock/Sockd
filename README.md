@@ -33,8 +33,14 @@ rpm -ivh rpmbuild/RPMS/x86_64/dante-server-1.4.2-1.el7.centos.x86_64.rpm
 ```  
 
 ## Option 2 Using RPMBuild  
-
-
+```
+cd  
+git clone -b master https://github.com/stardock/Sockd  
+cd Sockd/x86_64/
+ll
+rpm -ivh dante-1.4.2-1.el7.x86_64.rpm
+rpm -ivh dante-server-1.4.2-1.el7.x86_64.rpm
+```
 
 ##  Setup configure  
 ```  
