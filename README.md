@@ -75,6 +75,65 @@ socks pass {
 useradd -r -s /bin/false USERNAME
 passwd USERNAME
 ```
+
+## Test  
+
+使用内置的-V命令测试sockd.conf文件是否正确，若正确则无任何输出  
+```
+sockd -V
+```
+直接以daemon模式运行即可  
+```
+sockd -D
+```
+使用Telegram设置该地址为socks代理，填入刚才新建的用户名即可。  
+
+## Access Control  
+
+需求如下：socks5服务器仅代理Telegram的IP段（类似于Shadowsocks-libev的ACL功能），对其它代理请求一律拒绝  
+
+只需把sockd.conf最后的  
+```
+socks pass {
+    from: 0.0.0.0/0 to: 0.0.0.0/0
+    #log: connect disconnect error
+}
+```
+替换为  
+```
+socks pass {
+    from: 0.0.0.0/0 to: 91.108.4.0/22
+}
+
+socks pass {
+    from: 0.0.0.0/0 to: 91.108.8.0/21
+}
+
+socks pass {
+    from: 0.0.0.0/0 to: 91.108.16.0/21
+}
+
+socks pass {
+    from: 0.0.0.0/0 to: 91.108.36.0/23
+}
+
+socks pass {
+    from: 0.0.0.0/0 to: 91.108.38.0/23
+}
+
+socks pass {
+    from: 0.0.0.0/0 to: 91.108.56.0/22
+}
+
+socks pass {
+    from: 0.0.0.0/0 to: 149.154.160.0/2
+}
+
+socks block {
+    from: 0.0.0.0/0 to: 0.0.0.0/0
+}
+```
+
 ## Setup firewall to allowed  
 
 firewall-cmd --zone=public --add-port=1080/tcp --permanent  
