@@ -1,7 +1,9 @@
 # Sockd
 dante-server / sockd ? The private sockd service 
 
-## Environment:  
+## Option 1 Compile&Install  
+
+### Environment:  
 ```  
 $ cat /etc/redhat-release   
 CentOS Linux release 7.3.1611 (Core)   
@@ -9,7 +11,7 @@ $ uname -a
 Linux xxx 3.10.0-514.6.2.el7.x86_64 #1 SMP Thu Feb 23 03:04:39 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux  
 ```  
 
-##  Start to build:  
+###  Start to build:  
 * Download Source code  
 `wget https://www.inet.no/dante/files/dante-1.4.2.tar.gz`  
 
@@ -24,11 +26,15 @@ yum install -y gcc make rpm-build bison flex pam-devel
 
 `rpmbuild -ta dante-1.4.2.tar.gz`  
 
-##  Install the RPM  
+###  Install the RPM  
 ```  
 rpm -ivh rpmbuild/RPMS/x86_64/dante-1.4.2-1.el7.centos.x86_64.rpm  
 rpm -ivh rpmbuild/RPMS/x86_64/dante-server-1.4.2-1.el7.centos.x86_64.rpm  
 ```  
+
+## Option 2 Using RPMBuild  
+
+
 
 ##  Setup configure  
 ```  
